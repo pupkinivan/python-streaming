@@ -1,0 +1,57 @@
+{
+"openapi": "3.1.0",
+"info": {
+"title": "HTTP streaming example",
+"version": "0.1.0"
+},
+"paths": {
+"/audios/file-stream": {
+"get": {
+"summary": "Get Audio File Stream",
+"operationId": "get_audio_file_stream_audios_file_stream_get",
+"responses": {
+"200": {
+"description": "Successful Response",
+"content": {
+"application/json": {
+"schema": {}
+}
+}
+}
+}
+}
+},
+"/audios/streaming-response": {
+"get": {
+"summary": "Get Audio Streaming Response",
+"operationId": "get_audio_streaming_response_audios_streaming_response_get",
+"responses": {
+"200": {
+"description": "Successful Response",
+"content": {
+"application/json": {
+"schema": {}
+}
+}
+}
+}
+}
+},
+"/data/stream": {
+"get": {
+"summary": "Get Data Http Stream",
+"operationId": "get_data_http_stream_data_stream_get",
+"responses": {
+"200": {
+"description": "Successful Response",
+"content": {
+"application/json": {
+"schema": {}
+}
+}
+}
+}
+}
+}
+}
+}

@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "python-streaming"
+version = "0.1.0"
+description = "Python web streaming examples"
+authors = ["Ivan Pupkin <ipupkin@untref.edu.ar>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+websockets = "^13.0.1"
+fastapi = "^0.114.2"
+python-multipart = "^0.0.9"
+uvicorn = "^0.30.6"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.6.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
