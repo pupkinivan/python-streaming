@@ -12,8 +12,9 @@ Run `python python_streaming/websockets/server.py` and `python python_streaming/
 
 There are examples for streaming responses in two widely used frameworks: FastAPI and Flask. This part of the project uses FastAPI to handle both HTTP and other WebSocket endpoints.
 
-1. Run the FastAPI or Flask apps (`python_streaming/fastapi_app/app.py` or `python_streaming/flask_app/app.py`, respectively)
-2. Invoke each of the different endpoints using your HTTP/WebSockets client of choice (remember _not_ to preload the response). You have a few examples:
+1. Set the environment variables in the `.env` file (you have an `.env.sample` available for reference) 
+2. Run the FastAPI or Flask apps (`python_streaming/fastapi_app/app.py` or `python_streaming/flask_app/app.py`, respectively)
+3. Invoke each of the different endpoints using your HTTP/WebSockets client of choice (remember _not_ to preload the response). You have a few examples:
    - `python_streaming/chat_client.py` leverages the streamed response
    - `python_streaming/reactive_client.py` provides a demonstration of how to further connect the incoming stream with reactive programming observables
 
