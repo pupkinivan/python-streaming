@@ -26,8 +26,8 @@ There are examples for producing and consuming streamed/chunked payloads in seve
    * Flask: `python_streaming/flask_app/app.py`
    * websockets: `python_streaming/websockets_app/server.py`
 3. Invoke each of the different endpoints using your HTTP/WebSockets client of choice (remember _not_ to preload the response). You have a few examples:
-   - `python_streaming/chat_client.py` leverages the streamed response
-   - `python_streaming/reactive_client.py` provides a demonstration of how to further connect the incoming stream with reactive programming observables
+   - `python_streaming/chat_client.consume_chat_response` leverages the streamed response
+   - `python_streaming/chat_client.buffer_response_reactively` provides a demonstration of how to further connect the incoming stream with reactive programming observables
    - `python_streaming/websockets_app/client.py` is a simple, blocking (sync) client for the websockets server
 
 ## Upcoming features
