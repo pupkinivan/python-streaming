@@ -10,6 +10,8 @@ BUFFER_SIZE = 80
 
 
 def buffer_response_reactively(user_prompt: str):
+    """Perform an HTTP request with a chunked (streamed) response and consume
+    it reactively, with further processing."""
     request_payload = {
         'user_id': '12345',
         'message': user_prompt,
@@ -21,6 +23,9 @@ def buffer_response_reactively(user_prompt: str):
         json=request_payload,
         preload_content=False
     )
+
+    # Here's the reactive part of the code, with mapping, flat-mapping,
+    # buffering, etc.
     (
         rx.from_iterable(response.stream())
         .pipe(
@@ -28,7 +33,8 @@ def buffer_response_reactively(user_prompt: str):
             ops.flat_map(lambda text: [character for character in text]),
             ops.buffer_with_count(BUFFER_SIZE),
             ops.map(lambda characters: ''.join(characters)),
-        ).subscribe(
+        )
+        .subscribe(
             on_next=lambda text: print(text, end='\n\n'),
             on_error=lambda e: print(f'Error: {e}'),
             on_completed=lambda: print('Done'),
