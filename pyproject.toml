@@ -11,6 +11,14 @@ websockets = "^13.0.1"
 fastapi = "^0.114.2"
 python-multipart = "^0.0.9"
 uvicorn = "^0.30.6"
+boto3 = "^1.35.20"
+flask = {extras = ["async"], version = "^3.0.3"}
+locust = "^2.31.6"
+pyaudio = "^0.2.14"
+soundfile = "^0.12.1"
+numpy = "^2.1.1"
+python-dotenv = "^1.0.1"
+reactivex = "^4.0.4"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.6.5"
