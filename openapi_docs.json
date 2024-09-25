@@ -9,12 +9,45 @@
 "get": {
 "summary": "Get Audio File Stream",
 "operationId": "get_audio_file_stream_audios_file_stream_get",
+"parameters": [
+{
+"name": "audio_format",
+"in": "query",
+"required": false,
+"schema": {
+"anyOf": [
+{
+"type": "string"
+},
+{
+"type": "null"
+}
+],
+"examples": [
+"mp3",
+"wav"
+],
+"default": "mp3",
+"title": "Audio Format"
+}
+}
+],
 "responses": {
 "200": {
 "description": "Successful Response",
 "content": {
 "application/json": {
 "schema": {}
+}
+}
+},
+"422": {
+"description": "Validation Error",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/HTTPValidationError"
+}
 }
 }
 }
@@ -51,6 +84,232 @@
 }
 }
 }
+}
+},
+"/videos/buffering": {
+"get": {
+"summary": "Video Buffering",
+"operationId": "video_buffering_videos_buffering_get",
+"parameters": [
+{
+"name": "range",
+"in": "header",
+"required": false,
+"schema": {
+"type": "string",
+"title": "Range"
+}
+}
+],
+"responses": {
+"200": {
+"description": "Successful Response",
+"content": {
+"application/json": {
+"schema": {}
+}
+}
+},
+"422": {
+"description": "Validation Error",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/HTTPValidationError"
+}
+}
+}
+}
+}
+}
+},
+"/audios/{audio_id}": {
+"get": {
+"summary": "Get Audio Info",
+"operationId": "get_audio_info_audios__audio_id__get",
+"parameters": [
+{
+"name": "audio_id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "string",
+"title": "Audio Id"
+}
+}
+],
+"responses": {
+"200": {
+"description": "Successful Response",
+"content": {
+"application/json": {
+"schema": {}
+}
+}
+},
+"422": {
+"description": "Validation Error",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/HTTPValidationError"
+}
+}
+}
+}
+}
+}
+},
+"/audios/frame-buffers/{audio_id}": {
+"get": {
+"summary": "Audio Frame Buffering",
+"operationId": "audio_frame_buffering_audios_frame_buffers__audio_id__get",
+"parameters": [
+{
+"name": "audio_id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "string",
+"title": "Audio Id"
+}
+},
+{
+"name": "start_frame",
+"in": "query",
+"required": false,
+"schema": {
+"type": "integer",
+"minimum": 0,
+"default": 0,
+"title": "Start Frame"
+}
+}
+],
+"responses": {
+"200": {
+"description": "Successful Response",
+"content": {
+"application/json": {
+"schema": {}
+}
+}
+},
+"422": {
+"description": "Validation Error",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/HTTPValidationError"
+}
+}
+}
+}
+}
+}
+},
+"/chat": {
+"post": {
+"summary": "Get Ai Response",
+"operationId": "get_ai_response_chat_post",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ChatRequestDto"
+}
+}
+},
+"required": true
+},
+"responses": {
+"200": {
+"description": "Successful Response",
+"content": {
+"application/json": {
+"schema": {}
+}
+}
+},
+"422": {
+"description": "Validation Error",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/HTTPValidationError"
+}
+}
+}
+}
+}
+}
+}
+},
+"components": {
+"schemas": {
+"ChatRequestDto": {
+"properties": {
+"user_id": {
+"type": "string",
+"title": "User Id"
+},
+"message": {
+"type": "string",
+"title": "Message"
+}
+},
+"type": "object",
+"required": [
+"user_id",
+"message"
+],
+"title": "ChatRequestDto"
+},
+"HTTPValidationError": {
+"properties": {
+"detail": {
+"items": {
+"$ref": "#/components/schemas/ValidationError"
+},
+"type": "array",
+"title": "Detail"
+}
+},
+"type": "object",
+"title": "HTTPValidationError"
+},
+"ValidationError": {
+"properties": {
+"loc": {
+"items": {
+"anyOf": [
+{
+"type": "string"
+},
+{
+"type": "integer"
+}
+]
+},
+"type": "array",
+"title": "Location"
+},
+"msg": {
+"type": "string",
+"title": "Message"
+},
+"type": {
+"type": "string",
+"title": "Error Type"
+}
+},
+"type": "object",
+"required": [
+"loc",
+"msg",
+"type"
+],
+"title": "ValidationError"
 }
 }
 }
